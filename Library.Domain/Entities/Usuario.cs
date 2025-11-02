@@ -8,10 +8,9 @@ namespace Library.Domain.Entities
         public string Email { get; private set; }
         public string Senha { get; private set; }
         public string? Apelido { get; private set; }
-        public string? Foto { get; private set; }
         public DateTime? DataNascimento { get; set; }
         public DateTime DataCadastro { get; init; }
-        public string TipoUsuario { get; set; }
+        public string TipoUsuario { get; set; } //transformar em enum: estudante, funcionario, admin
 
 
 
