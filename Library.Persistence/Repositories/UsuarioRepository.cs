@@ -21,7 +21,6 @@ namespace Library.Persistence.Repositories
             }
             catch (Exception ex)
             {
-                // Aqui você pode registrar o erro ou lidar com ele de outra forma
                 Console.WriteLine($"Erro ao criar usuário: {ex.Message}");
                 return false;
             }

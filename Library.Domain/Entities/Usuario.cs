@@ -23,7 +23,7 @@ namespace Library.Domain.Entities
             Apelido = apelido;
             DataNascimento = dataNascimento;
             DataCadastro = DateTime.UtcNow;
-            TipoUsuario = "usuario_comum";
+            TipoUsuario = "estudante";
         }
 
         public void CadastroEmail(string email)

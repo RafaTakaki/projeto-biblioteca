@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Library.Aplication.UseCases.UsuarioUseCases.CreateUser;
+using Library.Aplication.UseCases.UsuarioUseCases.UsuarioEmprestimos;
 using Library.Aplication.UseCases.UsuarioUseCases.UsuarioLogin;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -19,18 +20,18 @@ namespace Library.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("CriarUsuario")]
         [SwaggerOperation(
             Summary = "Cria um novo usuário",
             Description = "Cria um novo usuário no sistema.")]
-        public async Task<IActionResult> Create(CreateUserRequest request)
+        public async Task<IActionResult> Create([FromBody] CreateUserRequest request)
         {
             var usuario = await _mediator.Send(request);
             return Ok(usuario);
         }
 
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         [SwaggerOperation(
             Summary = "Realiza o login do usuário",
             Description = "Realiza o login do usuário no sistema.")]
@@ -41,5 +42,16 @@ namespace Library.Api.Controllers
             return Ok(usuario);
         }
 
+        [HttpGet("UsuarioEmprestimosLogado")]
+        [SwaggerOperation(
+            Summary = "Obtém os empréstimos do usuário logado",
+            Description = "Obtém os empréstimos do usuário logado no sistema.")]
+        public async Task<IActionResult> GetUsuarioEmprestimosLogado()
+        {
+
+            //implementar
+            var usuarioEmprestimos = await _mediator.Send(new UsuarioEmprestimosRequest());
+            return Ok(usuarioEmprestimos);
+        }
     }
 }

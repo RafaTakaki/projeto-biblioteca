@@ -9,5 +9,4 @@ namespace Library.Aplication.UseCases.UsuarioUseCases.CreateUser
         string? Apelido,
         DateTime? DataNascimento
     ) : IRequest<CreateUserResponse>;
-
 }

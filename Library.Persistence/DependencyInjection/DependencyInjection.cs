@@ -30,6 +30,7 @@ namespace Library.Persistence.DependencyInjection
 
             // Registre seus repositórios aqui
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<IGerenciadorTokenService, GerenciadorTokenService>();
 
             return services;
