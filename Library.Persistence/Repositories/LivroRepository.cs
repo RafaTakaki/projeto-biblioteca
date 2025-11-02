@@ -25,5 +25,13 @@ namespace Library.Persistence.Repositories
                 return false;
             }
         }
+
+        public Task<List<string>> ObterLivrosDisponiveis()
+        {
+            var filter = Builders<Livro>.Filter.Where(l => l.QuantidadeDisponivel > 0);
+            var livrosDisponiveis = _livros.Find(filter).ToListAsync().Result;
+            var titulos = livrosDisponiveis.Select(l => l.Titulo).ToList();
+            return Task.FromResult(titulos);
+        }
     }
 }

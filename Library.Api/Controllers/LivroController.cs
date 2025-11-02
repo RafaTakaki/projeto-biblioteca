@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Library.Aplication.UseCases.LivrosUseCases.CadastroLivros;
+using Library.Aplication.UseCases.LivrosUseCases.LivrosDisponiveis;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -25,6 +26,16 @@ namespace Library.Api.Controllers
         {
             var livro = await _mediator.Send(request);
             return Ok(livro);
+        }
+
+        [HttpGet("ObterLivros")]
+        [SwaggerOperation(
+            Summary = "Obtém todos os livros",
+            Description = "Obtém todos os livros disponiveis no sistema.")]
+        public async Task<IActionResult> GetAll()
+        {
+            var livros = await _mediator.Send(new LivrosDisponiveisRequest());
+            return Ok(livros);
         }
     }
 }
