@@ -1,9 +1,29 @@
 namespace Library.Domain.Entities;
 
-public class Emprestimo(string  Id,
-                       string IdUsuario,
-                       string IdLivro,
-                       DateTime DataEmprestimo,
-                       DateTime DataDevolucaoPrevista,
-                       DateTime? DataDevolucaoReal,
-                       string Status); //transformar em enum: ativo, devolvido, atrasado
+public class Emprestimo
+{
+    public string Id { get; set; }
+    public string IdUsuario { get; set; }
+    public string IdLivro { get; set; }
+    public DateTime DataEmprestimo { get; set; }
+    public DateTime DataDevolucaoPrevista { get; set; }
+    public DateTime? DataDevolucaoReal { get; set; }
+    public string Status { get; set; } //transformar em enum: ativo, devolvido, atrasado
+
+    public Emprestimo(string id,
+                      string idUsuario,
+                      string idLivro,
+                      DateTime dataEmprestimo,
+                      DateTime dataDevolucaoPrevista,
+                      DateTime? dataDevolucaoReal,
+                      string status)
+    {
+        Id = id;
+        IdUsuario = idUsuario;
+        IdLivro = idLivro;
+        DataEmprestimo = dataEmprestimo;
+        DataDevolucaoPrevista = dataDevolucaoPrevista;
+        DataDevolucaoReal = dataDevolucaoReal;
+        Status = status;
+    }
+}

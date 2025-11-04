@@ -33,6 +33,7 @@ namespace Library.Persistence.DependencyInjection
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<IGerenciadorTokenService, GerenciadorTokenService>();
             services.AddScoped<IReservaRepository, ReservaRepository>();
+            services.AddScoped<IEmprestimoRepository, EmprestimoRepository>();
 
             return services;
         }

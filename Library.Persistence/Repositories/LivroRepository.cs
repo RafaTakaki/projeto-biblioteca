@@ -40,5 +40,13 @@ namespace Library.Persistence.Repositories
             var livro = await _livros.Find(filter).FirstOrDefaultAsync();
             return livro;
         }
+
+        public async Task<bool> EmprestarLivro(string livroId)
+        {
+            var filter = Builders<Livro>.Filter.Eq(l => l.Id, livroId);
+            var update = Builders<Livro>.Update.Inc(l => l.QuantidadeDisponivel, -1);
+            var result = await _livros.UpdateOneAsync(filter, update);
+            return result.ModifiedCount > 0;
+        }
     }
 }

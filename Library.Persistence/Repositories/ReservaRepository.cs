@@ -39,4 +39,25 @@ public class ReservaRepository : IReservaRepository
         }
     }
 
+    public async Task<Reserva> BuscarReservaPorId(string reservaId)
+    {
+        var filtro = Builders<Reserva>.Filter.Eq(r => r.Id, reservaId);
+        return await _reservas.Find(filtro).FirstOrDefaultAsync();
+    }
+
+    public async Task<bool> ConcluirReserva(string reservaId)
+    {
+        var filtro = Builders<Reserva>.Filter.Eq(r => r.Id, reservaId);
+        var update = Builders<Reserva>.Update.Set(r => r.Status, "Concluida");
+        var resultado = await _reservas.UpdateOneAsync(filtro, update);
+        return resultado.ModifiedCount > 0;
+    }
+
+    public async Task<bool> AtualizarReserva(string IdReserva, string status)
+    {
+        var filtro = Builders<Reserva>.Filter.Eq(r => r.Id, IdReserva);
+        var update = Builders<Reserva>.Update.Set(r => r.Status, status);
+        var resultado = _reservas.UpdateOneAsync(filtro, update);
+        return await resultado.ContinueWith(t => t.Result.ModifiedCount > 0);
+    }
 }

@@ -9,7 +9,7 @@ public class Reserva
     public string TituloLivro { get; set; }
     public DateTime DataReserva { get; set; }
     public DateTime? DataExpiracaoReserva { get; set; }
-    public string Status { get; set; } //transformar em enum: ativa, expirada, expirado
+    public string Status { get; set; } //transformar em enum: ativa, expirada, concluida
 
     public Reserva(string id,
                    string idUsuario,
