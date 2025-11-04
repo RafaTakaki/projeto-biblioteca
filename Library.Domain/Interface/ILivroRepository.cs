@@ -8,5 +8,6 @@ namespace Library.Domain.Interface
         Task<List<string>> ObterLivrosDisponiveis();
         Task<Livro?> ObterLivroPorTitulo(string titulo);
         Task<bool> EmprestarLivro(string livroId);
+        Task<bool> DevolverLivro(string livroId);
     }
 }
