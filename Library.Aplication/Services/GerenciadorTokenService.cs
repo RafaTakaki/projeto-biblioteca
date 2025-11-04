@@ -28,10 +28,10 @@ namespace Library.Aplication.Services
 
                 var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, usuario.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub, usuario.Id),
                 new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
+                new Claim(JwtRegisteredClaimNames.Name, usuario.Nome),  
                 new Claim(ClaimTypes.Role, usuario.TipoUsuario),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 
                 var tempoDeExpiracaoInMinutes = int.Parse(jwtSettings["ExpirationTimeInMinutes"] ?? "30");
@@ -54,7 +54,7 @@ namespace Library.Aplication.Services
         }
 
 
-        public async Task<string> BuscarGuidToken(string token)
+        public async Task<(string, string)> BuscarGuidTokenENome(string token)
         {
             try
             {
@@ -62,13 +62,16 @@ namespace Library.Aplication.Services
                 var jwtToken = handler.ReadJwtToken(token);
                 var userIdClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "sub").Value;
                 var idString = userIdClaim.Replace("id: ", "").Trim();
+                var emailClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "email").Value;
+                var email = emailClaim.Replace("email: ", "").Trim();
 
-                return idString;
+
+                return (idString, email);
 
             }
             catch (Exception ex)
             {
-                return null; // Retorna null se o token for inválido ou ocorrer um erro);
+                throw new Exception("Erro ao buscar o token", ex);
             }
         }
 

@@ -32,7 +32,7 @@ namespace Library.Api.Controllers
         [SwaggerOperation(
             Summary = "Obtém todos os livros",
             Description = "Obtém todos os livros disponiveis no sistema.")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> BuscarTodosOsLivrosDisponiveis()
         {
             var livros = await _mediator.Send(new LivrosDisponiveisRequest());
             return Ok(livros);

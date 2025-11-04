@@ -6,5 +6,7 @@ namespace Library.Domain.Interface
     {
         Task<bool> CadastrarLivro(Livro livro);
         Task<List<string>> ObterLivrosDisponiveis();
+
+        Task<Livro?> ObterLivroPorTitulo(string titulo);
     }
 }

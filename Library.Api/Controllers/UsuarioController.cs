@@ -6,52 +6,51 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Library.Api.Controllers
+namespace Library.Api.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+
+public class UsuarioController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    
-    public class UsuarioController : ControllerBase
+    IMediator _mediator;
+
+    public UsuarioController(IMediator mediator)
     {
-        IMediator _mediator;
+        _mediator = mediator;
+    }
 
-        public UsuarioController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
-        [HttpPost("CriarUsuario")]
-        [SwaggerOperation(
-            Summary = "Cria um novo usuário",
-            Description = "Cria um novo usuário no sistema.")]
-        public async Task<IActionResult> Create([FromBody] CreateUserRequest request)
-        {
-            var usuario = await _mediator.Send(request);
-            return Ok(usuario);
-        }
+    [HttpPost("CriarUsuario")]
+    [SwaggerOperation(
+        Summary = "Cria um novo usuário",
+        Description = "Cria um novo usuário no sistema.")]
+    public async Task<IActionResult> Create([FromBody] CreateUserRequest request)
+    {
+        var usuario = await _mediator.Send(request);
+        return Ok(usuario);
+    }
 
 
-        [HttpPost("Login")]
-        [SwaggerOperation(
-            Summary = "Realiza o login do usuário",
-            Description = "Realiza o login do usuário no sistema.")]
-        public async Task<IActionResult> Login([FromBody] UsuarioLoginRequest request)
-        {
+    [HttpPost("Login")]
+    [SwaggerOperation(
+        Summary = "Realiza o login do usuário",
+        Description = "Realiza o login do usuário no sistema.")]
+    public async Task<IActionResult> Login([FromBody] UsuarioLoginRequest request)
+    {
 
-            var usuario = await _mediator.Send(request);
-            return Ok(usuario);
-        }
+        var usuario = await _mediator.Send(request);
+        return Ok(usuario);
+    }
 
-        [HttpGet("UsuarioEmprestimosLogado")]
-        [SwaggerOperation(
-            Summary = "Obtém os empréstimos do usuário logado",
-            Description = "Obtém os empréstimos do usuário logado no sistema.")]
-        public async Task<IActionResult> GetUsuarioEmprestimosLogado()
-        {
+    [HttpGet("UsuarioEmprestimosLogado")]
+    [SwaggerOperation(
+        Summary = "Obtém os empréstimos do usuário logado",
+        Description = "Obtém os empréstimos do usuário logado no sistema.")]
+    public async Task<IActionResult> GetUsuarioEmprestimosLogado()
+    {
 
-            //implementar
-            var usuarioEmprestimos = await _mediator.Send(new UsuarioEmprestimosRequest());
-            return Ok(usuarioEmprestimos);
-        }
+        //implementar
+        var usuarioEmprestimos = await _mediator.Send(new UsuarioEmprestimosRequest());
+        return Ok(usuarioEmprestimos);
     }
 }

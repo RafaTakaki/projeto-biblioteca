@@ -5,6 +5,6 @@ namespace Library.Domain.Interface
     public interface IGerenciadorTokenService
     {
         Task<string> GerarToken(Usuario usuario);
-        Task<string> BuscarGuidToken(string token);
+        Task<(string, string)> BuscarGuidTokenENome(string token);
     }
 }

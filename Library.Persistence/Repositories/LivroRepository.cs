@@ -26,12 +26,19 @@ namespace Library.Persistence.Repositories
             }
         }
 
-        public Task<List<string>> ObterLivrosDisponiveis()
+        public async Task<List<string>> ObterLivrosDisponiveis()
         {
             var filter = Builders<Livro>.Filter.Where(l => l.QuantidadeDisponivel > 0);
             var livrosDisponiveis = _livros.Find(filter).ToListAsync().Result;
             var titulos = livrosDisponiveis.Select(l => l.Titulo).ToList();
-            return Task.FromResult(titulos);
+            return await Task.FromResult(titulos);
+        }
+
+        public async Task<Livro?> ObterLivroPorTitulo(string titulo)
+        {
+            var filter = Builders<Livro>.Filter.Eq(l => l.Titulo, titulo);
+            var livro = await _livros.Find(filter).FirstOrDefaultAsync();
+            return livro;
         }
     }
 }
