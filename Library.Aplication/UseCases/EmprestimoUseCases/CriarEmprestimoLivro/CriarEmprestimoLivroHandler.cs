@@ -1,4 +1,5 @@
 using Library.Domain.Entities;
+using Library.Domain.Enums;
 using Library.Domain.Interface;
 using MediatR;
 
@@ -28,7 +29,7 @@ public class CriarEmprestimoLivroHandler : IRequestHandler<CriarEmprestimoLivroR
             DateTime.UtcNow,
             DateTime.UtcNow.AddDays(14),
             null,
-            "ativo"
+            StatusEmprestimo.ativo
         );
         var result = await _emprestimoRepository.CriarEmprestimo(emprestimo);
 
@@ -39,8 +40,8 @@ public class CriarEmprestimoLivroHandler : IRequestHandler<CriarEmprestimoLivroR
                 Mensagem = "Falha ao criar o empréstimo."
             };
 
-        reserva.Status = "concluida";
-        var resultAlterarReserva = await _reservaRepository.AtualizarReserva(request.IdReserva, "concluida");
+        reserva.Status = StatusReserva.Concluida;
+        var resultAlterarReserva = await _reservaRepository.AtualizarReserva(request.IdReserva, StatusReserva.Concluida);
         var ResultAlterarDisponibilidade = await _livroRepository.EmprestarLivro(reserva.IdLivro);
 
         if (!resultAlterarReserva || !ResultAlterarDisponibilidade)

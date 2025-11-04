@@ -1,7 +1,7 @@
 using Library.Domain.Entities;
+using Library.Domain.Enums;
 using Library.Domain.Interface;
 using MediatR;
-using Microsoft.AspNetCore.Authentication;
 
 namespace Library.Aplication.UseCases.ReservaUseCases.ReservarLivro;
 
@@ -39,7 +39,7 @@ public class ReservarLivroHandler : IRequestHandler<ReservarLivroRequest, Reserv
             livro.Titulo,
             DateTime.UtcNow.Date,
             DateTime.UtcNow.AddDays(5).Date,
-            "ativa"
+            StatusReserva.Ativa
         );
 
         var resultado = await _reservaRepository.CadastrarReserva(reserva);

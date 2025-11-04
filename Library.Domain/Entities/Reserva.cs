@@ -1,3 +1,5 @@
+using Library.Domain.Enums;
+
 namespace Library.Domain.Entities;
 
 public class Reserva
@@ -9,7 +11,7 @@ public class Reserva
     public string TituloLivro { get; set; }
     public DateTime DataReserva { get; set; }
     public DateTime? DataExpiracaoReserva { get; set; }
-    public string Status { get; set; } //transformar em enum: ativa, expirada, concluida
+    public StatusReserva Status { get; set; }
 
     public Reserva(string id,
                    string idUsuario,
@@ -18,7 +20,7 @@ public class Reserva
                    string tituloLivro,
                    DateTime dataReserva,
                    DateTime? dataExpiracaoReserva,
-                   string status)
+                   StatusReserva status)
     {
         Id = id;
         IdUsuario = idUsuario;

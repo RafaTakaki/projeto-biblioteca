@@ -1,4 +1,5 @@
 using Library.Domain.Entities;
+using Library.Domain.Enums;
 using Library.Domain.Interface;
 using MongoDB.Driver;
 
@@ -15,7 +16,7 @@ public class ReservaRepository : IReservaRepository
 
     public Task<List<Reserva>> BuscarReservasAtivas()
     {
-        var filtro = Builders<Reserva>.Filter.Eq(r => r.Status, "ativa");
+        var filtro = Builders<Reserva>.Filter.Eq(r => r.Status, StatusReserva.Ativa);
         return _reservas.Find(filtro).ToListAsync();
     }
 
@@ -48,12 +49,12 @@ public class ReservaRepository : IReservaRepository
     public async Task<bool> ConcluirReserva(string reservaId)
     {
         var filtro = Builders<Reserva>.Filter.Eq(r => r.Id, reservaId);
-        var update = Builders<Reserva>.Update.Set(r => r.Status, "Concluida");
+        var update = Builders<Reserva>.Update.Set(r => r.Status, StatusReserva.Concluida);
         var resultado = await _reservas.UpdateOneAsync(filtro, update);
         return resultado.ModifiedCount > 0;
     }
 
-    public async Task<bool> AtualizarReserva(string IdReserva, string status)
+    public async Task<bool> AtualizarReserva(string IdReserva, StatusReserva status)
     {
         var filtro = Builders<Reserva>.Filter.Eq(r => r.Id, IdReserva);
         var update = Builders<Reserva>.Update.Set(r => r.Status, status);

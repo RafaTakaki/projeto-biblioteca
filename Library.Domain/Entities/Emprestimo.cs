@@ -1,3 +1,5 @@
+using Library.Domain.Enums;
+
 namespace Library.Domain.Entities;
 
 public class Emprestimo
@@ -8,7 +10,7 @@ public class Emprestimo
     public DateTime DataEmprestimo { get; set; }
     public DateTime DataDevolucaoPrevista { get; set; }
     public DateTime? DataDevolucaoReal { get; set; }
-    public string Status { get; set; } //transformar em enum: ativo, devolvido, atrasado
+    public StatusEmprestimo Status { get; set; }
 
     public Emprestimo(string id,
                       string idUsuario,
@@ -16,7 +18,7 @@ public class Emprestimo
                       DateTime dataEmprestimo,
                       DateTime dataDevolucaoPrevista,
                       DateTime? dataDevolucaoReal,
-                      string status)
+                      StatusEmprestimo status)
     {
         Id = id;
         IdUsuario = idUsuario;
