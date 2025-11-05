@@ -48,9 +48,15 @@ public class UsuarioController : ControllerBase
         Description = "Obtém os empréstimos do usuário logado no sistema.")]
     public async Task<IActionResult> GetUsuarioEmprestimosLogado()
     {
-
-        //implementar
-        var usuarioEmprestimos = await _mediator.Send(new UsuarioEmprestimosRequest());
-        return Ok(usuarioEmprestimos);
+        try
+        {
+            var jwtToken = Request.Headers["Authorization"].ToString().Replace("Bearer ", "").Trim();
+            var usuarioEmprestimos = await _mediator.Send(new UsuarioEmprestimosRequest(jwtToken));
+            return Ok(usuarioEmprestimos);
+        }
+        catch (System.Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

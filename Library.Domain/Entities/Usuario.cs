@@ -1,3 +1,5 @@
+using Library.Domain.Enums;
+
 namespace Library.Domain.Entities
 {
     public class Usuario
@@ -10,7 +12,7 @@ namespace Library.Domain.Entities
         public string? Apelido { get; private set; }
         public DateTime? DataNascimento { get; set; }
         public DateTime DataCadastro { get; init; }
-        public string TipoUsuario { get; set; } //transformar em enum: estudante, funcionario, admin
+        public TipoUsuario TipoUsuario { get; set; } //transformar em enum: estudante, funcionario, admin
 
 
 
@@ -23,7 +25,7 @@ namespace Library.Domain.Entities
             Apelido = apelido;
             DataNascimento = dataNascimento;
             DataCadastro = DateTime.UtcNow;
-            TipoUsuario = "estudante";
+            TipoUsuario = TipoUsuario.usuario_comum;
         }
 
         public void CadastroEmail(string email)

@@ -26,7 +26,7 @@ namespace Library.Persistence.Repositories
             }
         }
 
-        public async Task<Usuario> ValidarEmail(string email)
+        public async Task<Usuario?> ValidarEmail(string email)
         {
             var filter = Builders<Usuario>.Filter.Eq(u => u.Email, email);
             return await _usuarios.Find(filter).FirstOrDefaultAsync();

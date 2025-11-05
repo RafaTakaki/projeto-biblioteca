@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Library.Aplication.UseCases.ReservaUseCases.BuscarReservasAtivas;
 using Library.Aplication.UseCases.ReservaUseCases.BuscarReservasPorEmail;
 using Library.Aplication.UseCases.ReservaUseCases.ReservarLivro;
+using Library.Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ public class ReservaController : Controller
     }
 
     [HttpPost("ReservarLivro")]
-    [Authorize]
+    [Authorize(Roles = nameof(TipoUsuario.usuario_comum))]
     [SwaggerOperation(
         Summary = "Reserva um livro",
         Description = "Permite que um usuário logado reserve um livro disponível na biblioteca.")]
@@ -46,6 +47,7 @@ public class ReservaController : Controller
     }
 
     [HttpGet("BuscarTodasReservasAtivas")]
+    [Authorize(Roles = nameof(TipoUsuario.administrador))]
     [SwaggerOperation(
         Summary = "Busca todas as reservas ativas",
         Description = "Retorna uma lista de todas as reservas ativas feitas pelos usuários.")]
@@ -66,6 +68,7 @@ public class ReservaController : Controller
     }
 
     [HttpGet("BuscarReservasPorEmail")]
+    [Authorize(Roles = nameof(TipoUsuario.administrador))]
     [SwaggerOperation(
         Summary = "Busca reservas por email",
         Description = "Retorna uma lista de reservas feitas por um usuário com base no seu email.")]

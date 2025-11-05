@@ -31,4 +31,10 @@ public class EmprestimoRepository : IEmprestimoRepository
         var filtro = Builders<Emprestimo>.Filter.Eq(e => e.Status, StatusEmprestimo.ativo);
         return await _emprestimos.Find(filtro).ToListAsync();
     }
+
+    public Task<List<Emprestimo>> BuscarEmprestimosPorIdUsuario(string idUsuario)
+    {
+        var filtro = Builders<Emprestimo>.Filter.Eq(e => e.IdUsuario, idUsuario);
+        return _emprestimos.Find(filtro).ToListAsync();
+    }
 }

@@ -8,4 +8,5 @@ public interface IEmprestimoRepository
     Task<Emprestimo> BuscarEmprestimoPorId(string idEmprestimo);
     Task<bool> AtualizarEmprestimo(Emprestimo emprestimo);
     Task<List<Emprestimo>> ObterTodosEmprestimosAtivos();
+    Task<List<Emprestimo>> BuscarEmprestimosPorIdUsuario(string idUsuario);
 }

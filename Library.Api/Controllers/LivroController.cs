@@ -1,7 +1,9 @@
 using System.Threading.Tasks;
 using Library.Aplication.UseCases.LivrosUseCases.CadastroLivros;
 using Library.Aplication.UseCases.LivrosUseCases.LivrosDisponiveis;
+using Library.Domain.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -17,8 +19,8 @@ public class LivroController : ControllerBase
         _mediator = mediator;
     }
 
-    //debito: implementar para apenas admin e funcionario
     [HttpPost("CriarLivro")]
+    [Authorize(Roles = nameof(TipoUsuario.administrador))]
     [SwaggerOperation(
         Summary = "Cria um novo livro",
         Description = "Cria um novo livro no sistema.")]
@@ -29,6 +31,7 @@ public class LivroController : ControllerBase
     }
 
     [HttpGet("ObterLivros")]
+    [Authorize(Roles = nameof(TipoUsuario.administrador))]
     [SwaggerOperation(
         Summary = "Obtém todos os livros",
         Description = "Obtém todos os livros disponiveis no sistema.")]

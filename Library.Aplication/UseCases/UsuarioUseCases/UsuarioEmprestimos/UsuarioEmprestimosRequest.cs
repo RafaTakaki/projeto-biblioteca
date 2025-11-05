@@ -1,12 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MediatR;
 
-namespace Library.Aplication.UseCases.UsuarioUseCases.UsuarioEmprestimos
+namespace Library.Aplication.UseCases.UsuarioUseCases.UsuarioEmprestimos;
+
+public class UsuarioEmprestimosRequest : IRequest<UsuarioEmprestimosResponse>
 {
-    public class UsuarioEmprestimosRequest
+    public string JwtToken { get; set; }
+
+    public UsuarioEmprestimosRequest(string jwtToken)
     {
-        
+        JwtToken = jwtToken;
     }
 }

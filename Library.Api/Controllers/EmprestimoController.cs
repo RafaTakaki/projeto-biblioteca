@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using Library.Aplication.UseCases.EmprestimoUseCases.CriarEmprestimoLivro;
 using Library.Aplication.UseCases.EmprestimoUseCases.DevolucaoEmprestimo;
 using Library.Aplication.UseCases.EmprestimoUseCases.TodosEmprestimosAtivos;
+using Library.Domain.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -20,6 +22,7 @@ public class EmprestimoController : Controller
     }
 
     [HttpPost("CriarEmprestimoLivro")]
+    [Authorize(Roles = nameof(TipoUsuario.administrador))]
     [SwaggerOperation(
         Summary = "Cria um empréstimo de livro",
         Description = "Permite que um usuário logado crie um empréstimo de um livro disponível na biblioteca.")]
@@ -40,6 +43,7 @@ public class EmprestimoController : Controller
         }
     }
     [HttpGet("TodosEmprestimosAtivos")]
+    [Authorize(Roles = nameof(TipoUsuario.administrador))]
     [SwaggerOperation(
         Summary = "Obtém todos os empréstimos ativos",
         Description = "Permite que um usuário logado obtenha todos os empréstimos de livros que estão ativos.")]
@@ -57,6 +61,7 @@ public class EmprestimoController : Controller
     }
 
     [HttpPost("DevolucaoEmprestimo")]
+    [Authorize(Roles = nameof(TipoUsuario.administrador))]
     [SwaggerOperation(
         Summary = "Devolve um empréstimo de livro",
         Description = "Permite que um usuário logado devolva um empréstimo de um livro.")]
