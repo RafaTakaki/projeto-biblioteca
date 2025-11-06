@@ -1,0 +1,3 @@
+namespace Library.Aplication.UseCases.LivrosUseCases.VerificarDisponibilidadeLivro;
+
+public record VerificarDisponibilidadeLivroResponse(bool Disponivel, int QuantidadeDisponivel);

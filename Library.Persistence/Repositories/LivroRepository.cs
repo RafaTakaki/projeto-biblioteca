@@ -48,12 +48,19 @@ public class LivroRepository : ILivroRepository
         var result = await _livros.UpdateOneAsync(filter, update);
         return result.ModifiedCount > 0;
     }
-    
+
     public async Task<bool> DevolverLivro(string livroId)
     {
         var filter = Builders<Livro>.Filter.Eq(l => l.Id, livroId);
         var update = Builders<Livro>.Update.Inc(l => l.QuantidadeDisponivel, 1);
         var result = await _livros.UpdateOneAsync(filter, update);
         return result.ModifiedCount > 0;
+    }
+    
+    public async Task<Livro?> ObterPorIdAsync(string livroId)
+    {
+        var filter = Builders<Livro>.Filter.Eq(l => l.Id, livroId);
+        var livro = await _livros.Find(filter).FirstOrDefaultAsync();
+        return livro;
     }
 }

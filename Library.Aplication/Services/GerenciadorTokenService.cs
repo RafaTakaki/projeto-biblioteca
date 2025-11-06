@@ -18,7 +18,7 @@ namespace Library.Aplication.Services
         }
 
 
-        public async Task<string> GerarToken(Usuario usuario)
+        public Task<string> GerarToken(Usuario usuario)
         {
             try
             {
@@ -30,12 +30,11 @@ namespace Library.Aplication.Services
             {
                 new Claim(JwtRegisteredClaimNames.Sub, usuario.Id),
                 new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
-                new Claim(JwtRegisteredClaimNames.Name, usuario.Nome),  
-                new Claim(ClaimTypes.Role, usuario.TipoUsuario),
+                new Claim(JwtRegisteredClaimNames.Name, usuario.Nome),
+                new Claim(ClaimTypes.Role, usuario.TipoUsuario.ToString()),
             };
 
                 var tempoDeExpiracaoInMinutes = int.Parse(jwtSettings["ExpirationTimeInMinutes"] ?? "30");
-
 
                 var token = new JwtSecurityToken(
                     issuer: jwtSettings["Issuer"],
@@ -44,8 +43,7 @@ namespace Library.Aplication.Services
                     expires: DateTime.UtcNow.AddMinutes(tempoDeExpiracaoInMinutes),
                     signingCredentials: new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256));
 
-
-                return new JwtSecurityTokenHandler().WriteToken(token);
+                return Task.FromResult(new JwtSecurityTokenHandler().WriteToken(token));
             }
             catch (Exception ex)
             {
@@ -54,19 +52,17 @@ namespace Library.Aplication.Services
         }
 
 
-        public async Task<(string, string)> BuscarGuidTokenENome(string token)
+        public Task<(string, string)> BuscarGuidTokenENome(string token)
         {
             try
             {
                 var handler = new JwtSecurityTokenHandler();
                 var jwtToken = handler.ReadJwtToken(token);
-                var userIdClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "sub").Value;
+                var userIdClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "sub")?.Value ?? string.Empty;
                 var idString = userIdClaim.Replace("id: ", "").Trim();
-                var emailClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "email").Value;
+                var emailClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "email")?.Value ?? string.Empty;
                 var email = emailClaim.Replace("email: ", "").Trim();
-
-
-                return (idString, email);
+                return Task.FromResult((idString, email));
 
             }
             catch (Exception ex)
@@ -74,7 +70,5 @@ namespace Library.Aplication.Services
                 throw new Exception("Erro ao buscar o token", ex);
             }
         }
-
-
     }
 }

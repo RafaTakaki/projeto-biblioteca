@@ -1,0 +1,3 @@
+namespace Library.Aplication.UseCases.LivrosUseCases.VerificarDisponibilidadeLivro;
+
+public class VerificarDisponibilidadeLivroValidator();
