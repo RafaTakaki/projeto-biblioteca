@@ -10,12 +10,14 @@ public class CriarEmprestimoLivroHandler : IRequestHandler<CriarEmprestimoLivroR
     private readonly IEmprestimoRepository _emprestimoRepository;
     private readonly IReservaRepository _reservaRepository;
     private readonly ILivroRepository _livroRepository;
+    private readonly IEmailService _emailService;
 
-    public CriarEmprestimoLivroHandler(IEmprestimoRepository emprestimoRepository, IReservaRepository reservaRepository, ILivroRepository livroRepository)
+    public CriarEmprestimoLivroHandler(IEmprestimoRepository emprestimoRepository, IReservaRepository reservaRepository, ILivroRepository livroRepository, IEmailService emailService)
     {
         _emprestimoRepository = emprestimoRepository;
         _reservaRepository = reservaRepository;
         _livroRepository = livroRepository;
+        _emailService = emailService;
     }
 
     public async Task<CriarEmprestimoLivroResponse> Handle(CriarEmprestimoLivroRequest request, CancellationToken cancellationToken)
@@ -50,6 +52,8 @@ public class CriarEmprestimoLivroHandler : IRequestHandler<CriarEmprestimoLivroR
                 Sucesso = false,
                 Mensagem = "Empréstimo criado, mas falha ao atualizar reserva ou disponibilidade do livro."
             };
+
+        await _emailService.EnviarEmailAsync(reserva.EmailUsuario, $"Olá! Só passando para avisar que você levou o livro '{reserva.TituloLivro}' para dar uma folheada e entrar em uma aventura literária. Lembre-se de devolvê-lo até {emprestimo.DataDevolucaoPrevista} — ou então as páginas podem começar a fazer travessuras! 😄");
 
         return new CriarEmprestimoLivroResponse
         {

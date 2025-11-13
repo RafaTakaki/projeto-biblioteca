@@ -32,7 +32,6 @@ public class LivroController : ControllerBase
     }
 
     [HttpGet("ObterLivrosDisponiveis")]
-    [Authorize(Roles = nameof(TipoUsuario.administrador))]
     [SwaggerOperation(
         Summary = "Obtém todos os livros Disponiveis",
         Description = "Obtém todos os livros disponiveis no sistema.")]

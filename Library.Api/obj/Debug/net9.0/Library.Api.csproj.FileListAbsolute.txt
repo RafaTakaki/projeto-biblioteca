@@ -68,3 +68,6 @@ C:\Dev\projeto-biblioteca\Library.Api\obj\Debug\net9.0\refint\Library.Api.dll
 C:\Dev\projeto-biblioteca\Library.Api\obj\Debug\net9.0\Library.Api.pdb
 C:\Dev\projeto-biblioteca\Library.Api\obj\Debug\net9.0\Library.Api.genruntimeconfig.cache
 C:\Dev\projeto-biblioteca\Library.Api\obj\Debug\net9.0\ref\Library.Api.dll
+C:\Dev\projeto-biblioteca\Library.Api\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+C:\Dev\projeto-biblioteca\Library.Api\bin\Debug\net9.0\MailKit.dll
+C:\Dev\projeto-biblioteca\Library.Api\bin\Debug\net9.0\MimeKit.dll

@@ -33,15 +33,14 @@ namespace Library.Persistence.DependencyInjection
                 return client.GetDatabase(settings.DatabaseName);
             });
 
-            // Registre seus repositórios aqui
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<IGerenciadorTokenService, GerenciadorTokenService>();
             services.AddScoped<IReservaRepository, ReservaRepository>();
             services.AddScoped<IEmprestimoRepository, EmprestimoRepository>();
+            services.AddScoped<IEmailService, EmailService>();
 
 
-            // Mapear classes para o MongoDB Colocar em um metodo apartado
             MapearEnum();
 
             return services;
