@@ -15,7 +15,7 @@ import {
   coerceElement,
   coerceNumberProperty,
   normalizePassiveListenerOptions
-} from "./chunk-I5G3CM32.js";
+} from "./chunk-O4UYIJIS.js";
 import {
   DOCUMENT
 } from "./chunk-O7ULJKGV.js";
@@ -4846,6 +4846,7 @@ export {
   ObserversModule,
   BreakpointObserver,
   Breakpoints,
+  AriaDescriber,
   CdkTrapFocus,
   LiveAnnouncer,
   FocusMonitor,
@@ -4893,4 +4894,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-BHCOB27Z.js.map
+//# sourceMappingURL=chunk-A5O7X2OF.js.map

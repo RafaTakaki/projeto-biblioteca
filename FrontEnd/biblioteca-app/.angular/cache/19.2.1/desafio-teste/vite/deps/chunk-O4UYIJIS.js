@@ -299,6 +299,7 @@ function _bindEventWithOptions(renderer, target, eventName, callback, options) {
 export {
   coerceBooleanProperty,
   coerceNumberProperty,
+  _isNumberValue,
   coerceArray,
   coerceCssPixelValue,
   coerceElement,
@@ -315,4 +316,4 @@ export {
   _isTestEnvironment,
   _bindEventWithOptions
 };
-//# sourceMappingURL=chunk-I5G3CM32.js.map
+//# sourceMappingURL=chunk-O4UYIJIS.js.map
