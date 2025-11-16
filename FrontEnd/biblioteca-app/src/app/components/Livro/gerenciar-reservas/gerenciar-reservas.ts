@@ -43,6 +43,7 @@ export class GerenciarReservasComponent {
   status: string = '';
   displayedColumns: string[] = ['emailUsuario', 'tituloLivro', 'dataExpiracaoReserva', 'status', 'criarEmprestimo'];
 
+  // TODO remover mock após o fluxo ficar pronto
   reservas: Reserva[] = [
     {
       id: '1',

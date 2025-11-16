@@ -45,6 +45,7 @@ export class GerenciarLivrosComponent {
   mensagem: string = '';
   displayedColumns: string[] = [  'titulo', 'autor', 'quantidadeEstoque', 'editar', 'excluir'];
 
+  // TODO remover mock após o fluxo ficar pronto
   livrosCadastrados: CadastroLivro[] = [
     {
       id: '1',
