@@ -55,6 +55,15 @@ export class ApiService {
     return this.http.get<string[]>(url);
   }
 
+  excluirLivro(livroParaDeletar: any): Observable<string> {
+    const params = new HttpParams()
+      .set('titulo', livroParaDeletar.toString());
+
+    // TODO Criar endpoint para realizar a operação
+    const url = `${this.apiUrl}5016/Livro/*altere aqui*`;
+    return this.http.delete<string>(url, {params});
+  }
+
   buscaRacas(tipoPet: string): Observable<string[]> {
     const url = tipoPet === 'Cachorro' ? this.apiUrlCachorro : this.apiUrlGato;
     return this.http.get<string[]>(url);

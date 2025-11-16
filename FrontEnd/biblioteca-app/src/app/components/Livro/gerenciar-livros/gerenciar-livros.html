@@ -34,7 +34,7 @@
       <ng-container matColumnDef="excluir">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="warn" matTooltip="Excluir Cadastro">
+          <button mat-icon-button color="warn" matTooltip="Excluir Cadastro" (click)="onDelete(element)">
             <mat-icon fontIcon="delete" />
           </button>
         </td>
