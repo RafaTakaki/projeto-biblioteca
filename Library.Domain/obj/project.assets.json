@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\lucme\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\projeto-biblioteca\\Library.Domain\\Library.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\lucme\\OneDrive\\Documentos\\projeto-gabriel\\projeto-biblioteca\\Library.Domain\\Library.Domain.csproj",
       "projectName": "Library.Domain",
-      "projectPath": "C:\\Dev\\projeto-biblioteca\\Library.Domain\\Library.Domain.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\projeto-biblioteca\\Library.Domain\\obj\\",
+      "projectPath": "C:\\Users\\lucme\\OneDrive\\Documentos\\projeto-gabriel\\projeto-biblioteca\\Library.Domain\\Library.Domain.csproj",
+      "packagesPath": "C:\\Users\\lucme\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lucme\\OneDrive\\Documentos\\projeto-gabriel\\projeto-biblioteca\\Library.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\lucme\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -42,9 +42,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
+        "auditMode": "all"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -65,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\lucme\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
