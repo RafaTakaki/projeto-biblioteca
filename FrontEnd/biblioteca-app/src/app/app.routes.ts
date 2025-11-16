@@ -12,6 +12,7 @@ import { DetalhesPetComponent } from './components/Livro/detalhes-pet/detalhes-p
 import { GerenciarLivrosComponent } from './components/Livro/gerenciar-livros/gerenciar-livros';
 import { EditarLivroComponent } from './components/Livro/editar-livro/editar-livro';
 import { GerenciarReservasComponent } from './components/Livro/gerenciar-reservas/gerenciar-reservas';
+import { VisualizarReservasComponent } from './components/Livro/visualizar-reservas/visualizar-reservas';
 
 
 export const routes: Routes = [
@@ -64,6 +65,11 @@ export const routes: Routes = [
     {
       path: 'gerenciar-reservas',
       component: GerenciarReservasComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'visualizar-reservas',
+      component: VisualizarReservasComponent,
       canActivate: [AuthGuard]
     },
     {

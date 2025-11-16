@@ -31,6 +31,7 @@ export class LoginComponent {
           // Armazenando o token diretamente no componente
           localStorage.setItem('token', response.token);
           localStorage.setItem('tipoUsuario', response.tipoUsuario);
+          localStorage.setItem('email', response.email);
           // console.info('Token:', response.token);
           this.router.navigate(['/front-page']);
           this.mensagem = 'Login realizado com sucesso!';

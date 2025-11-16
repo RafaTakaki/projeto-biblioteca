@@ -1,0 +1,76 @@
+import {Component} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {ApiService} from '../../../services/api.service';
+import {Router} from '@angular/router';
+import {ImagemPadraoComponent} from "../../imagem-padrao/imagem-padrao.component";
+import {ChangeDetectionStrategy} from '@angular/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import type { Reserva } from '../../../models/cadastro-pet';
+
+@Component({
+  selector: 'app-gerenciar-reservas',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatTableModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    ImagemPadraoComponent
+  ],
+  templateUrl: './visualizar-reservas.html',
+  styleUrls: ['./visualizar-reservas.css'],
+  providers: [provideNativeDateAdapter()],
+})
+export class VisualizarReservasComponent {
+  emailUsuario: string = '';
+  tituloLivro: string = '';
+  dataExpiracaoReserva: string = '';
+  status: string = '';
+  displayedColumns: string[] = ['emailUsuario', 'tituloLivro', 'dataExpiracaoReserva', 'status'];
+
+  reservas: Reserva[] = [];
+
+  constructor(private apiService: ApiService, private router: Router,  private snackBar: MatSnackBar) {
+  }
+
+  ngOnInit(): void {
+    this.listarReservasPorEmail();
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
+  private listarReservasPorEmail() {
+    let email = localStorage.getItem('email');
+    if (email) {
+      this.apiService.listarReservasPorEmail(email).subscribe({
+        next: (response) => {
+          this.reservas = response;
+        },
+        error: (error) => {
+          this.snackBar.open('Erro ao reservas ativas.', 'Fechar', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
+        }
+      });
+    }
+  }
+}

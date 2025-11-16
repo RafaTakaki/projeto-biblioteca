@@ -11,7 +11,7 @@ import {ChangeDetectionStrategy} from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-import type { CadastroLivro } from '../../../models/cadastro-pet';
+import type { CadastroLivro, Reserva } from '../../../models/cadastro-pet';
 
 @Component({
   selector: 'app-formulario-agendamento',
@@ -37,7 +37,16 @@ export class CriarReservaComponent {
   constructor(private apiService: ApiService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.apiService.listarLivrosDisponniveis().subscribe({
+    this.listarLivrosDisponiveis();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
+  private listarLivrosDisponiveis() {
+    this.apiService.listarLivrosDisponiveis().subscribe({
       next: (response) => {
         this.livros = response.livrosDisponiveis;
       },
@@ -48,29 +57,5 @@ export class CriarReservaComponent {
         });
       }
     });
-  }
-
-  onSubmit() {
-    this.apiService.criarReserva(this.nomeDoLivro).subscribe({
-      next: (response) => {
-        this.snackBar.open('Reserva gerada com sucesso!', 'Fechar', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          panelClass: ['success-snackbar']
-        });
-      },
-      error: (error) => {
-        this.snackBar.open('Erro ao listar reservas.', 'Fechar', {
-          duration: 3000,
-          panelClass: ['error-snackbar']
-        });
-      }
-    });
-  }
-
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
   }
 }

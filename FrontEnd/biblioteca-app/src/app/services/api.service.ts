@@ -58,9 +58,17 @@ export class ApiService {
     return this.http.post<string>(url, body, { headers: headers, responseType: 'text' as 'json' });
   }
 
-  listarLivrosDisponniveis(): Observable<any> {
+  listarLivrosDisponiveis(): Observable<any> {
     const url = `${this.apiUrl}5016/Livro/ObterLivrosDisponiveis`;
     return this.http.get<any>(url);
+  }
+
+  listarReservasPorEmail(email: string): Observable<Reserva[]> {
+    const params = new HttpParams()
+      .set('email', email);
+
+    const url = `${this.apiUrl}5016/Reserva/BuscarReservasPorEmail`;
+    return this.http.get<Reserva[]>(url, { params });
   }
 
   excluirLivro(livroParaDeletar: any): Observable<string> {

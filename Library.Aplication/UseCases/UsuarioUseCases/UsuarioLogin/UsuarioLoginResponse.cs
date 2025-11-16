@@ -8,5 +8,6 @@ namespace Library.Aplication.UseCases.UsuarioUseCases.UsuarioLogin
         public string Nome { get; set; }
         public string Token { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
+        public string Email { get; set; }
     }
 }

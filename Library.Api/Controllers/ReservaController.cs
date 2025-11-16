@@ -68,11 +68,10 @@ public class ReservaController : Controller
     }
 
     [HttpGet("BuscarReservasPorEmail")]
-    [Authorize(Roles = nameof(TipoUsuario.administrador))]
     [SwaggerOperation(
         Summary = "Busca reservas por email",
         Description = "Retorna uma lista de reservas feitas por um usuário com base no seu email.")]
-    public async Task<IActionResult> BuscarReservasPorEmail([FromBody] string email)
+    public async Task<IActionResult> BuscarReservasPorEmail([FromQuery] string email)
     {
         try
         {

@@ -25,7 +25,8 @@ namespace Library.Aplication.UseCases.UsuarioUseCases.UsuarioLogin
                     IdUsuario = usuario.Id,
                     Nome = usuario.Nome,
                     Token = token,
-                    TipoUsuario =  usuario.TipoUsuario
+                    TipoUsuario =  usuario.TipoUsuario,
+                    Email = usuario.Email
                 };
             }
             throw new Exception("Senha inválida");
