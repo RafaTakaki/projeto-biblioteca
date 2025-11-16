@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { CadastroPet } from '../models/cadastro-pet';
 import { Agendamento } from '../models/agendamentos';
 import { Notificacao } from '../models/notificacao';
-import type { CadastroLivro, Reserva } from '../models/cadastro-pet';
+import type { CadastroLivro, Reserva, Emprestimo } from '../models/cadastro-pet';
 
 @Injectable({
   providedIn: 'root'
@@ -84,6 +84,17 @@ export class ApiService {
     const url = `${this.apiUrl}5016/Emprestimo/CriarEmprestimoLivro`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<string>(url,{idReserva: reserva.id} , { headers: headers, responseType: 'text' as 'json' });
+  }
+
+  devolverEmprestimo(emprestimo: Emprestimo): Observable<string> {
+    const url = `${this.apiUrl}5016/Emprestimo/DevolucaoEmprestimo`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<string>(url,{idEmprestimo: emprestimo.id} , { headers: headers, responseType: 'text' as 'json' });
+  }
+
+  buscarEmprestimosAtivos(): Observable<any> {
+    const url = `${this.apiUrl}5016/Emprestimo/TodosEmprestimosAtivos`;
+    return this.http.get<any>(url);
   }
 
   buscarReservasAtivas(): Observable<Reserva[]> {

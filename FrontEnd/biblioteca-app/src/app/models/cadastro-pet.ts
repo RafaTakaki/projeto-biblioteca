@@ -8,7 +8,6 @@ export interface CadastroPet {
     raca: string;
     imagem?: string;
   }
-
   export interface CadastroLivro {
     id?: string,
     titulo: string,
@@ -17,7 +16,6 @@ export interface CadastroPet {
     categoria: string,
     quantidadeEstoque: string
   }
-
   export interface Reserva {
     id: string,
     idUsuario: string,
@@ -26,5 +24,15 @@ export interface CadastroPet {
     tituloLivro: string,
     dataReserva: string,
     dataExpiracaoReserva: string,
+    status: string
+  }
+
+  export interface Emprestimo {
+    id: string,
+    idUsuario: string,
+    idLivro: string,
+    dataEmprestimo: string,
+    dataDevolucaoPrevista: string,
+    dataDevolucaoReal: string,
     status: string
   }

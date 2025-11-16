@@ -13,6 +13,7 @@ import { GerenciarLivrosComponent } from './components/Livro/gerenciar-livros/ge
 import { EditarLivroComponent } from './components/Livro/editar-livro/editar-livro';
 import { GerenciarReservasComponent } from './components/Livro/gerenciar-reservas/gerenciar-reservas';
 import { VisualizarReservasComponent } from './components/Livro/visualizar-reservas/visualizar-reservas';
+import { GerenciarEmprestimoComponent } from './components/Livro/gerenciar-emprestimos/gerenciar-emprestimos';
 
 
 export const routes: Routes = [
@@ -70,6 +71,11 @@ export const routes: Routes = [
     {
       path: 'visualizar-reservas',
       component: VisualizarReservasComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'gerenciar-emprestimos',
+      component: GerenciarEmprestimoComponent,
       canActivate: [AuthGuard]
     },
     {
