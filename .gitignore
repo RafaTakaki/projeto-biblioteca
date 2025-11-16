@@ -19,15 +19,10 @@
 /out
 # Arquivos de cache e temporários
 /.angular
+.angular
 .angular/cache
 .tmp
 .webstorm*
-# Cache do Angular CLI, que é onde o Vite armazena os deps
-.angular/cache
-# O diretório .angular na raiz do projeto (para garantir)
-.angular
-# Os arquivos de saida (build) que nao devem ser comitados
-/dist
 # Ignora o cache do Angular/Vite dentro da sua pasta FrontEnd
 FrontEnd/biblioteca-app/.
 # Arquivos de Cache e Build do TypeScript
