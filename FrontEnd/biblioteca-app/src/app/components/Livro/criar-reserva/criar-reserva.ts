@@ -36,6 +36,10 @@ export class CriarReservaComponent {
 
   constructor(private apiService: ApiService, private router: Router, private snackBar: MatSnackBar) { }
 
+  onSubmit() {
+    this.criarReserva();
+  }
+
   ngOnInit(): void {
     this.listarLivrosDisponiveis();
   }
@@ -45,6 +49,25 @@ export class CriarReservaComponent {
     localStorage.removeItem('tipoUsuario');
     localStorage.removeItem('email');
     this.router.navigate(['/login']);
+  }
+
+  private criarReserva() {
+    this.apiService.criarReserva(this.nomeDoLivro).subscribe({
+      next: (response) => {
+        this.snackBar.open('Reserva criada com sucesso!', 'Fechar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['success-snackbar']
+        });
+      },
+      error: (error) => {
+        this.snackBar.open('Erro ao listar livros.', 'Fechar', {
+          duration: 3000,
+          panelClass: ['error-snackbar']
+        });
+      }
+    });
   }
 
   private listarLivrosDisponiveis() {
