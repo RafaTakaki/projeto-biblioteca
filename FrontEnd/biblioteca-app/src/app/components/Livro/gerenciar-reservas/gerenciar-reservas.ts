@@ -43,29 +43,7 @@ export class GerenciarReservasComponent {
   status: string = '';
   displayedColumns: string[] = ['emailUsuario', 'tituloLivro', 'dataExpiracaoReserva', 'status', 'criarEmprestimo'];
 
-  // TODO remover mock após o fluxo ficar pronto
-  reservas: Reserva[] = [
-    {
-      id: '1',
-      idUsuario: '1',
-      emailUsuario: 'teste@teste.com.br',
-      idLivro: '1',
-      tituloLivro: 'Teste',
-      dataReserva: '16/11/2025',
-      dataExpiracaoReserva: '16/11/2025',
-      status: '0'
-    },
-    {
-      id: '2',
-      idUsuario: '2',
-      emailUsuario: 'teste2@teste2.com.br',
-      idLivro: '2',
-      tituloLivro: 'Teste2',
-      dataReserva: '16/11/2025',
-      dataExpiracaoReserva: '16/11/2025',
-      status: '0'
-    },
-  ];
+  reservas: Reserva[] = [];
 
   constructor(private apiService: ApiService, private router: Router,  private snackBar: MatSnackBar) {
   }

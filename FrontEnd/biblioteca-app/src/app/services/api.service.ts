@@ -75,7 +75,7 @@ export class ApiService {
   criarEmprestimo(reserva: Reserva): Observable<string> {
     const url = `${this.apiUrl}5016/Emprestimo/CriarEmprestimoLivro`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<string>(url, reserva.id, { headers: headers, responseType: 'text' as 'json' });
+    return this.http.post<string>(url,{idReserva: reserva.id} , { headers: headers, responseType: 'text' as 'json' });
   }
 
   buscarReservasAtivas(): Observable<Reserva[]> {
