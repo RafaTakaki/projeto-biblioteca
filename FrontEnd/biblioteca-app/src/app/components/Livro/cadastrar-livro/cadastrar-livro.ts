@@ -11,7 +11,7 @@ import {ChangeDetectionStrategy} from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-import type { CadastroLivro } from '../../../models/cadastro-pet';
+import type { CadastroLivro } from '../../../models/model';
 
 @Component({
   selector: 'app-cadastrar-livro',

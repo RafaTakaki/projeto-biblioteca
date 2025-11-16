@@ -14,7 +14,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-import type { CadastroLivro } from '../../../models/cadastro-pet';
+import type { CadastroLivro } from '../../../models/model';
 
 @Component({
   selector: 'app-gerenciar-livros',

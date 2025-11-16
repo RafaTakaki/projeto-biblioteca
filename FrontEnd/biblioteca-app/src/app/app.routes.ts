@@ -6,9 +6,7 @@ import { CadastrarLivroComponent } from './components/Livro/cadastrar-livro/cada
 import { AuthGuard } from './auth.guard';
 import { FrontPageComponent } from './components/front-page/front-page.component';
 import { CriarReservaComponent } from './components/Livro/criar-reserva/criar-reserva';
-import { CadastroAgendamentoComponent } from './components/agendamento/cadastro-agendamento/cadastro-agendamento.component';
 import { NotificacoesComponent } from './components/notificacoes/notificacoes.component';
-import { DetalhesPetComponent } from './components/Livro/detalhes-pet/detalhes-pet.component';
 import { GerenciarLivrosComponent } from './components/Livro/gerenciar-livros/gerenciar-livros';
 import { EditarLivroComponent } from './components/Livro/editar-livro/editar-livro';
 import { GerenciarReservasComponent } from './components/Livro/gerenciar-reservas/gerenciar-reservas';
@@ -20,10 +18,6 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
-    },
-    {
-        path: 'pet/:id',
-        component: DetalhesPetComponent
     },
     {
         path: 'criar-conta',
@@ -46,11 +40,6 @@ export const routes: Routes = [
     {
         path: 'criar-reserva',
         component: CriarReservaComponent,
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'cadastro-agendamento',
-        component: CadastroAgendamentoComponent,
         canActivate: [AuthGuard]
     },
     {

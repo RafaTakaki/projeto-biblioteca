@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CadastroPet } from '../models/cadastro-pet';
 import { Agendamento } from '../models/agendamentos';
 import { Notificacao } from '../models/notificacao';
-import type { CadastroLivro, Reserva, Emprestimo } from '../models/cadastro-pet';
+import type { CadastroLivro, Reserva, Emprestimo } from '../models/model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private apiUrl = 'http://localhost:'; // Base da API
-  private apiUrlCachorro = 'http://localhost:5222/api/Pet/listarRacaCachorros'; // Endpoint para cachorros
-  private apiUrlGato = 'http://localhost:5222/api/Pet/listarRacaGatos'; // Endpoint para gatos
-  private urlBuscaPet = 'http://localhost:5222/api/Pet/ListarPetsPorUsuario';
 
   constructor(private http: HttpClient) { }
 
@@ -107,59 +103,6 @@ export class ApiService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<string>(url, { livro: titulo, token: '' }, { headers: headers, responseType: 'text' as 'json' });
   }
-
-  buscaRacas(tipoPet: string): Observable<string[]> {
-    const url = tipoPet === 'Cachorro' ? this.apiUrlCachorro : this.apiUrlGato;
-    return this.http.get<string[]>(url);
-
-
-  }
-
-  buscapets(): Observable<CadastroPet[]> {
-    const url = this.urlBuscaPet;
-    return this.http.get<CadastroPet[]>(url);
-  }
-
-  cadastroAgendamento(nomePet: string, servico: string, data: string, observacao: string): Observable<string> {
-    const url = 'http://localhost:5090/api/Cuidado/CadastrarServico';
-
-
-    const params = new HttpParams()
-      .set('nomePet', nomePet)
-      .set('Servico', servico)
-      .set('Data', data)
-      .set('Observacao', observacao);
-
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.http.post<string>(url, {}, { headers, params });
-  }
-
-  buscaNomePetsToken(): Observable<string[]> {
-    const url = 'http://localhost:5222/api/Pet/ListarNomePetsPorUsuario';
-    return this.http.get<string[]>(url);
-  }
-
-  buscaAgendamentosPorPet(nomePet: string): Observable<Agendamento[]> {
-    const url = 'http://localhost:5090/api/Cuidado/ListarAgendamentosPorPet';
-
-    const params = new HttpParams()
-      .set('nomePet', nomePet);
-
-
-    return this.http.get<Agendamento[]>(url, { params });
-  }
-
-  excluirPet(id: number): Observable<CadastroPet[]> {
-    const url = 'http://localhost:5222/api/Pet/';
-
-    const params = new HttpParams()
-      .set('id', id.toString());
-
-    return this.http.delete<CadastroPet[]>(url, { params });
-
-  }
-
 
   excluirAgendamento(idAgendamento: number): Observable<Agendamento[]> {
     const url = 'http://localhost:5090/api/Cuidado/DeletarAgendamento/';

@@ -1,14 +1,4 @@
-export interface CadastroPet {
-    id: number;
-    idUsuario: number;
-    nomePet: string;
-    tipoPet: string;
-    idadePet: number;
-    sexo?: string;
-    raca: string;
-    imagem?: string;
-  }
-  export interface CadastroLivro {
+ export interface CadastroLivro {
     id?: string,
     titulo: string,
     autor: string,
@@ -16,6 +6,7 @@ export interface CadastroPet {
     categoria: string,
     quantidadeEstoque: string
   }
+
   export interface Reserva {
     id: string,
     idUsuario: string,
