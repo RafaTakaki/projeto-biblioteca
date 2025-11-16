@@ -1,0 +1,39 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/contentModel.xml
+/.idea.Library.iml
+/projectSettingsUpdater.xml
+/modules.xml
+# Ignored default folder with query files
+/queries/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Diretórios de build/saída
+/dist
+/build
+/out
+# Arquivos de cache e temporários
+/.angular
+.angular/cache
+.tmp
+.webstorm*
+# Cache do Angular CLI, que é onde o Vite armazena os deps
+.angular/cache
+# O diretório .angular na raiz do projeto (para garantir)
+.angular
+# Os arquivos de saida (build) que nao devem ser comitados
+/dist
+# Ignora o cache do Angular/Vite dentro da sua pasta FrontEnd
+FrontEnd/biblioteca-app/.
+# Arquivos de Cache e Build do TypeScript
+**/.tsbuildinfo
+# Saída de Build do .NET
+**/bin/
+**/obj/
+# Ignora a pasta da IDE
+.idea/
