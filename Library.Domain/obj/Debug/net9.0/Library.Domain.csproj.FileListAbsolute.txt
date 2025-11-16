@@ -10,3 +10,15 @@ C:\Dev\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\Library.Domain.dll
 C:\Dev\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\refint\Library.Domain.dll
 C:\Dev\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\Library.Domain.pdb
 C:\Dev\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\ref\Library.Domain.dll
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\bin\Debug\net9.0\Library.Domain.deps.json
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\bin\Debug\net9.0\Library.Domain.dll
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\bin\Debug\net9.0\Library.Domain.pdb
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\Library.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\Library.Domain.AssemblyInfoInputs.cache
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\Library.Domain.AssemblyInfo.cs
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\Library.Domain.csproj.CoreCompileInputs.cache
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\Library.Domain.sourcelink.json
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\Library.Domain.dll
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\refint\Library.Domain.dll
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\Library.Domain.pdb
+C:\Users\lucme\OneDrive\Documentos\projeto-gabriel\projeto-biblioteca\Library.Domain\obj\Debug\net9.0\ref\Library.Domain.dll
