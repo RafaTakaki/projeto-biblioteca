@@ -28,3 +28,5 @@
 .angular
 # Os arquivos de saida (build) que nao devem ser comitados
 /dist
+# Ignora o cache do Angular/Vite dentro da sua pasta FrontEnd
+FrontEnd/biblioteca-app/.angular
