@@ -10,6 +10,7 @@ import { CadastroAgendamentoComponent } from './components/agendamento/cadastro-
 import { NotificacoesComponent } from './components/notificacoes/notificacoes.component';
 import { DetalhesPetComponent } from './components/Livro/detalhes-pet/detalhes-pet.component';
 import { GerenciarLivrosComponent } from './components/Livro/gerenciar-livros/gerenciar-livros';
+import { EditarLivroComponent } from './components/Livro/editar-livro/editar-livro';
 
 
 export const routes: Routes = [
@@ -52,6 +53,11 @@ export const routes: Routes = [
     {
       path: 'gerenciar-livros',
       component: GerenciarLivrosComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'editar-livro',
+      component: EditarLivroComponent,
       canActivate: [AuthGuard]
     },
     {

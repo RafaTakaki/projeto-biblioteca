@@ -1,5 +1,5 @@
 <app-imagem-padrao />
-<form (ngSubmit)="onSubmit()" class="login100-form validate-form">
+<form class="login100-form validate-form">
 
 	<span class="login100-form-title p-b-34 p-t-27">
 		Gerenciar Livros
@@ -25,7 +25,7 @@
       <ng-container matColumnDef="editar">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button matTooltip="Editar Cadastro">
+          <button mat-icon-button matTooltip="Editar Cadastro" (click)="onEdit(element)">
             <mat-icon fontIcon="edit" />
           </button>
         </td>
@@ -50,8 +50,4 @@
 	<a class="txt1" href="/front-page">
 		Voltar
 	</a>
-</div>
-
-<div *ngIf="mensagem" class="mensagem-feedback">
-	{{ mensagem }}
 </div>

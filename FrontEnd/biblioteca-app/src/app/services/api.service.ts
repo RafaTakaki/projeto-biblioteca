@@ -50,6 +50,14 @@ export class ApiService {
     return this.http.post<string>(url, body, { headers: headers, responseType: 'text' as 'json' });
   }
 
+  editarLivro(body: CadastroLivro): Observable<string> {
+    // TODO Criar no back end o endpoint para alteração
+    const url = `${this.apiUrl}5016/Livro/*altere aqui*`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<string>(url, body, { headers: headers, responseType: 'text' as 'json' });
+  }
+
   listarLivrosDisponniveis(): Observable<string[]> {
     const url = `${this.apiUrl}5016/Livro/ObterLivrosDisponiveis`;
     return this.http.get<string[]>(url);

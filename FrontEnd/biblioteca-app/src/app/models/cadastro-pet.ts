@@ -10,6 +10,7 @@ export interface CadastroPet {
   }
 
   export interface CadastroLivro {
+    id?: string;
     titulo: string,
     autor: string,
     isbn: string,

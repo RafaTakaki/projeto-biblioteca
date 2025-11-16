@@ -10,14 +10,12 @@ import {ImagemPadraoComponent} from "../../imagem-padrao/imagem-padrao.component
 import {ChangeDetectionStrategy} from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
-import {MatTableModule} from '@angular/material/table';
-import {MatIconModule} from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import type { CadastroLivro } from '../../../models/cadastro-pet';
+import { input } from '@angular/core';
 
 @Component({
-  selector: 'app-gerenciar-livros',
+  selector: 'app-editar-livro',
   standalone: true,
   imports: [
     CommonModule,
@@ -26,51 +24,41 @@ import type { CadastroLivro } from '../../../models/cadastro-pet';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatTableModule,
-    MatIconModule,
-    MatTooltipModule,
     MatSnackBarModule,
     ImagemPadraoComponent
   ],
-  templateUrl: './gerenciar-livros.html',
-  styleUrls: ['./gerenciar-livros.css'],
+  templateUrl: './editar-livro.html',
+  styleUrls: ['./editar-livro.css'],
   providers: [provideNativeDateAdapter()],
 })
-export class GerenciarLivrosComponent {
+export class EditarLivroComponent {
+  livroRecebido: CadastroLivro = {} as CadastroLivro;
+  id: string = '';
   titulo: string = '';
   autor: string = '';
-  categoria: string = '';
   isbn: string = '';
+  categoria: string = '';
   quantidadeEstoque: string = '';
   mensagem: string = '';
-  displayedColumns: string[] = [  'titulo', 'autor', 'quantidadeEstoque', 'editar', 'excluir'];
 
-  livrosCadastrados: CadastroLivro[] = [
-    {
-      id: '1',
-      titulo: 'Teste',
-      autor: 'Teste',
-      isbn: 'Teste',
-      categoria: 'Teste',
-      quantidadeEstoque: '10'
-    },
-    {
-      id: '2',
-      titulo: 'Teste2',
-      autor: 'Teste2',
-      isbn: 'Teste2',
-      categoria: 'Teste2',
-      quantidadeEstoque: '5'
-    },
-  ];
-
-  constructor(private apiService: ApiService, private router: Router,  private snackBar: MatSnackBar) {
+  constructor(private apiService: ApiService, private router: Router, private snackBar: MatSnackBar) {
   }
 
-  onDelete(livroParaDeletar: any): void {
-    this.apiService.excluirLivro(livroParaDeletar.id).subscribe({
+  ngOnInit(): void {
+    this.preencheCamposDoFormularioComLivro();
+  }
+
+  onSubmit(): void {
+    this.apiService.editarLivro({
+      id: this.id,
+      titulo: this.titulo,
+      autor: this.autor,
+      isbn: this.isbn,
+      categoria: this.categoria,
+      quantidadeEstoque: this.quantidadeEstoque
+    } as CadastroLivro).subscribe({
       next: (response) => {
-        this.snackBar.open('Livro excluido com sucesso!', 'Fechar', {
+        this.snackBar.open('Livro cadastrado com sucesso!', 'Fechar', {
           duration: 3000,
           horizontalPosition: 'center',
           verticalPosition: 'top',
@@ -78,18 +66,10 @@ export class GerenciarLivrosComponent {
         });
       },
       error: (error) => {
-        this.snackBar.open('Erro ao excluir livro. Tente novamente.', 'Fechar', {
-          duration: 3000,
+        this.snackBar.open('Erro ao cadastrar livro. Tente novamente.', 'Fechar', {
+          duration: 5000,
           panelClass: ['error-snackbar']
         });
-      }
-    });
-  }
-
-  onEdit(livroParaDeletar: CadastroLivro): void {
-    this.router.navigate(['/editar-livro'], {
-      state: {
-        livro: livroParaDeletar
       }
     });
   }
@@ -97,5 +77,19 @@ export class GerenciarLivrosComponent {
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+  }
+
+  private preencheCamposDoFormularioComLivro(): void {
+    const state = history.state;
+
+    if (state && state['livro']) {
+      const livroParaDeletar = state['livro'];
+      this.id = livroParaDeletar.id;
+      this.titulo = livroParaDeletar.titulo;
+      this.autor = livroParaDeletar.autor;
+      this.isbn = livroParaDeletar.isbn;
+      this.categoria = livroParaDeletar.categoria;
+      this.quantidadeEstoque  = livroParaDeletar.quantidadeEstoque;
+    }
   }
 }
