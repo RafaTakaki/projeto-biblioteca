@@ -13,3 +13,12 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+# Diretórios de build/saída
+/dist
+/build
+/out
+# Arquivos de cache e temporários
+/.angular
+.angular/cache
+.tmp
+.webstorm*
