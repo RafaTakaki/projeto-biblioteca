@@ -2,10 +2,10 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login-page/login/login.component';
 import { CriarContaComponent } from './components/login-page/criar-conta/criar-conta.component';
 import { RecuperarSenhaComponent } from './components/login-page/recuperar-senha/recuperar-senha.component';
-import { CadastroPetComponent } from './components/Pets/cadastro-pet/cadastro-pet.component';
+import { CadastrarLivroComponent } from './components/Pets/cadastrar-livro/cadastrar-livro';
 import { AuthGuard } from './auth.guard';
 import { FrontPageComponent } from './components/front-page/front-page.component';
-import { ListarMeusPetsComponent } from './components/Pets/listar-meus-pets/listar-meus-pets.component';
+import { CriarEmprestimoComponent } from './components/Pets/criar-emprestimos/criar-emprestimo';
 import { CadastroAgendamentoComponent } from './components/agendamento/cadastro-agendamento/cadastro-agendamento.component';
 import { NotificacoesComponent } from './components/notificacoes/notificacoes.component';
 import { DetalhesPetComponent } from './components/Pets/detalhes-pet/detalhes-pet.component';
@@ -29,23 +29,21 @@ export const routes: Routes = [
         component: RecuperarSenhaComponent
     },
     {
-        path: 'cadastro-pet',
-        component: CadastroPetComponent,
+        path: 'cadastrar-livro',
+        component: CadastrarLivroComponent,
         canActivate: [AuthGuard]
     },
-    {  
+    {
         path: 'front-page',
         component: FrontPageComponent,
         canActivate: [AuthGuard]
-        
     },
     {
-        path: 'meus-pets',
-        component: ListarMeusPetsComponent,
+        path: 'criar-emprestimos',
+        component: CriarEmprestimoComponent,
         canActivate: [AuthGuard]
     },
     {
-        
         path: 'cadastro-agendamento',
         component: CadastroAgendamentoComponent,
         canActivate: [AuthGuard]
@@ -56,10 +54,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: '**',   
+        path: '**',
         redirectTo: 'front-page',
-        
     }
-
-
 ];

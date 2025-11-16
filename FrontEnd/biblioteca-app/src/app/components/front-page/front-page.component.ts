@@ -17,13 +17,23 @@ export class FrontPageComponent implements OnInit {
 
   constructor(private router: Router, private api: ApiService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.api.numeroNotificacoes().subscribe(count=> {
       this.numeroDeNotificacoes = count
     })
   }
 
-  logout() {
+  isAdmin(): boolean {
+    let tipoUsuario = localStorage.getItem('tipoUsuario');
+    return tipoUsuario !== null && tipoUsuario == 1 as any;
+  }
+
+  isUsuario(): boolean {
+    let tipoUsuario = localStorage.getItem('tipoUsuario');
+    return tipoUsuario !== null && tipoUsuario == 0 as any;
+  }
+
+  logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }

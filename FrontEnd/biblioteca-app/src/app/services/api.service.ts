@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { CadastroPet } from '../models/cadastro-pet';
 import { Agendamento } from '../models/agendamentos';
 import { Notificacao } from '../models/notificacao';
+import type { CadastroLivro } from '../models/cadastro-pet';
 
 @Injectable({
   providedIn: 'root'
@@ -42,26 +43,16 @@ export class ApiService {
     return this.http.post(url, body, { headers, responseType: 'text' });
   }
 
-  cadastroPet(
-    nomePet: string,
-    tipoPet: string,
-    idadePet: number,
-    raca: string,
-    sexo: string
-  ): Observable<string> {
-    const url = `${this.apiUrl}5222/api/Pet/cadastro`;
-
-    const body = {
-      nomePet: nomePet,
-      tipoPet: tipoPet,
-      idadePet: idadePet,
-      raca: raca,
-      sexo: sexo
-    };
-
+  cadastrarLivro(body: CadastroLivro): Observable<string> {
+    const url = `${this.apiUrl}5016/Livro/CriarLivro`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http.post<string>(url, body, { headers: headers, responseType: 'text' as 'json' });
+  }
+
+  listarLivrosDisponniveis(): Observable<string[]> {
+    const url = `${this.apiUrl}5016/Livro/ObterLivrosDisponiveis`;
+    return this.http.get<string[]>(url);
   }
 
   buscaRacas(tipoPet: string): Observable<string[]> {

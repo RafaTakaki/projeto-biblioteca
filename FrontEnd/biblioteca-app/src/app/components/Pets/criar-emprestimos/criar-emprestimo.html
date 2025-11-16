@@ -1,0 +1,25 @@
+<app-imagem-padrao />
+<form (ngSubmit)="onSubmit()" class="login100-form validate-form">
+
+
+	<span class="login100-form-title p-b-34 p-t-27">
+		Agendar retirada do livro
+	</span>
+
+	<div class="wrap-input100 validate-input">
+		<input class="input100" type="text" [(ngModel)]="nomeDoLivro" name="nomeDoLivro" placeholder="Nome do Livro:" required />
+		<span class="focus-input100"></span>
+	</div>
+
+	<div class="container-login100-form-btn">
+		<button type="submit" class="login100-form-btn">
+			Criar Emprestimo
+		</button>
+	</div>
+</form>
+
+<div class="text-center p-t-90">
+	<a class="txt1" href="/front-page">
+		Voltar
+	</a>
+</div>

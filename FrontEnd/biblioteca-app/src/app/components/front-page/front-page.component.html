@@ -1,6 +1,6 @@
 <div class="notificacao">
 	<span class="numero-notificacoes" *ngIf="numeroDeNotificacoes > 0">{{ numeroDeNotificacoes }}</span>
-	<a class="notificacao-botao" href="/notificacoes">
+	<a class="notificacao-botao" *ngIf="isUsuario()" href="/notificacoes">
 		✉️
 	</a>
 </div>
@@ -13,21 +13,21 @@
 	Bem Vindo !
 </span>
 
-<div class="icone-frontpage">
-	<a class="icone-frontpage" href="/cadastro-pet">
-		Cadastrar Pet
+<div class="icone-frontpage" *ngIf="isAdmin()">
+	<a class="icone-frontpage" href="/cadastrar-livro">
+		Cadastrar Livro
 	</a>
 </div>
 
-<div class="icone-frontpage">
-	<a class="icone-frontpage" href="/meus-pets">
-		Listar meus Pets
+<div class="icone-frontpage" *ngIf="isAdmin()">
+	<a class="icone-frontpage" href="/meus-livros">
+		Meus Livros
 	</a>
 </div>
 
-<div class="icone-frontpage">
+<div class="icone-frontpage" *ngIf="isAdmin()">
 	<a class="icone-frontpage" href="/cadastro-agendamento">
-		Cadastrar agendamento
+		Criar emprestimo
 	</a>
 </div>
 

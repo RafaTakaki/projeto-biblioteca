@@ -17,9 +17,6 @@ export class LoginComponent {
   password: string = '';
   mensagem: string = '';
 
-  
-  
-
   constructor(private authService: AuthService, private router: Router) { }
 
   onSubmit() {
@@ -33,6 +30,7 @@ export class LoginComponent {
         if (response && response.token) {
           // Armazenando o token diretamente no componente
           localStorage.setItem('token', response.token);
+          localStorage.setItem('tipoUsuario', response.tipoUsuario);
           // console.info('Token:', response.token);
           this.router.navigate(['/front-page']);
           this.mensagem = 'Login realizado com sucesso!';
@@ -49,6 +47,7 @@ export class LoginComponent {
   }
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('tipoUsuario');
     this.router.navigate(['/login']);
   }
 }
