@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { CadastroPet } from '../models/cadastro-pet';
 import { Agendamento } from '../models/agendamentos';
 import { Notificacao } from '../models/notificacao';
-import type { CadastroLivro } from '../models/cadastro-pet';
+import type { CadastroLivro, Reserva } from '../models/cadastro-pet';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +70,17 @@ export class ApiService {
     // TODO Criar endpoint para realizar a operação
     const url = `${this.apiUrl}5016/Livro/*altere aqui*`;
     return this.http.delete<string>(url, {params});
+  }
+
+  criarEmprestimo(reserva: Reserva): Observable<string> {
+    const url = `${this.apiUrl}5016/Emprestimo/CriarEmprestimoLivro`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<string>(url, reserva.id, { headers: headers, responseType: 'text' as 'json' });
+  }
+
+  buscarReservasAtivas(): Observable<Reserva[]> {
+    const url = `${this.apiUrl}5016/Reserva/BuscarTodasReservasAtivas`
+    return this.http.get<Reserva[]>(url);
   }
 
   buscaRacas(tipoPet: string): Observable<string[]> {

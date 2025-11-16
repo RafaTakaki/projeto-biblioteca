@@ -11,6 +11,7 @@ import { NotificacoesComponent } from './components/notificacoes/notificacoes.co
 import { DetalhesPetComponent } from './components/Livro/detalhes-pet/detalhes-pet.component';
 import { GerenciarLivrosComponent } from './components/Livro/gerenciar-livros/gerenciar-livros';
 import { EditarLivroComponent } from './components/Livro/editar-livro/editar-livro';
+import { GerenciarReservasComponent } from './components/Livro/gerenciar-reservas/gerenciar-reservas';
 
 
 export const routes: Routes = [
@@ -58,6 +59,11 @@ export const routes: Routes = [
     {
       path: 'editar-livro',
       component: EditarLivroComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'gerenciar-reservas',
+      component: GerenciarReservasComponent,
       canActivate: [AuthGuard]
     },
     {

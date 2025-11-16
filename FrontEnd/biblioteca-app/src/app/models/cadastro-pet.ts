@@ -10,10 +10,21 @@ export interface CadastroPet {
   }
 
   export interface CadastroLivro {
-    id?: string;
+    id?: string,
     titulo: string,
     autor: string,
     isbn: string,
     categoria: string,
     quantidadeEstoque: string
+  }
+
+  export interface Reserva {
+    id: string,
+    idUsuario: string,
+    emailUsuario: string,
+    idLivro: string,
+    tituloLivro: string,
+    dataReserva: string,
+    dataExpiracaoReserva: string,
+    status: string
   }

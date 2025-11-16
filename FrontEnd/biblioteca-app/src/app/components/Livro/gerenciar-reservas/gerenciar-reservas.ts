@@ -14,10 +14,10 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-import type { CadastroLivro } from '../../../models/cadastro-pet';
+import type { Reserva } from '../../../models/cadastro-pet';
 
 @Component({
-  selector: 'app-gerenciar-livros',
+  selector: 'app-gerenciar-reservas',
   standalone: true,
   imports: [
     CommonModule,
@@ -32,53 +32,52 @@ import type { CadastroLivro } from '../../../models/cadastro-pet';
     MatSnackBarModule,
     ImagemPadraoComponent
   ],
-  templateUrl: './gerenciar-livros.html',
-  styleUrls: ['./gerenciar-livros.css'],
+  templateUrl: './gerenciar-reservas.html',
+  styleUrls: ['./gerenciar-reservas.css'],
   providers: [provideNativeDateAdapter()],
 })
-export class GerenciarLivrosComponent {
-  titulo: string = '';
-  autor: string = '';
-  categoria: string = '';
-  isbn: string = '';
-  quantidadeEstoque: string = '';
-  mensagem: string = '';
-  displayedColumns: string[] = [  'titulo', 'autor', 'quantidadeEstoque', 'editar', 'excluir'];
+export class GerenciarReservasComponent {
+  emailUsuario: string = '';
+  tituloLivro: string = '';
+  dataExpiracaoReserva: string = '';
+  status: string = '';
+  displayedColumns: string[] = ['emailUsuario', 'tituloLivro', 'dataExpiracaoReserva', 'status', 'criarEmprestimo'];
 
-  livrosCadastrados: CadastroLivro[] = [
+  reservas: Reserva[] = [
     {
       id: '1',
-      titulo: 'Teste',
-      autor: 'Teste',
-      isbn: 'Teste',
-      categoria: 'Teste',
-      quantidadeEstoque: '10'
+      idUsuario: '1',
+      emailUsuario: 'teste@teste.com.br',
+      idLivro: '1',
+      tituloLivro: 'Teste',
+      dataReserva: '16/11/2025',
+      dataExpiracaoReserva: '16/11/2025',
+      status: '0'
     },
     {
       id: '2',
-      titulo: 'Teste2',
-      autor: 'Teste2',
-      isbn: 'Teste2',
-      categoria: 'Teste2',
-      quantidadeEstoque: '5'
+      idUsuario: '2',
+      emailUsuario: 'teste2@teste2.com.br',
+      idLivro: '2',
+      tituloLivro: 'Teste2',
+      dataReserva: '16/11/2025',
+      dataExpiracaoReserva: '16/11/2025',
+      status: '0'
     },
   ];
 
   constructor(private apiService: ApiService, private router: Router,  private snackBar: MatSnackBar) {
   }
 
-  onDelete(livroParaDeletar: any): void {
-    this.apiService.excluirLivro(livroParaDeletar.id).subscribe({
-      next: (response) => {
-        this.snackBar.open('Livro excluido com sucesso!', 'Fechar', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          panelClass: ['success-snackbar']
-        });
+  ngOnInit(): void {
+    this.apiService.buscarReservasAtivas().subscribe({
+      next: (response: Reserva[]) => {
+        if (response != null) {
+          this.reservas = response;
+        }
       },
       error: (error) => {
-        this.snackBar.open('Erro ao excluir livro. Tente novamente.', 'Fechar', {
+        this.snackBar.open('Erro ao listar reservas.', 'Fechar', {
           duration: 3000,
           panelClass: ['error-snackbar']
         });
@@ -86,10 +85,21 @@ export class GerenciarLivrosComponent {
     });
   }
 
-  onEdit(livroParaDeletar: CadastroLivro): void {
-    this.router.navigate(['/editar-livro'], {
-      state: {
-        livro: livroParaDeletar
+  onCreate(reserva: Reserva): void {
+    this.apiService.criarEmprestimo(reserva).subscribe({
+      next: (response) => {
+        this.snackBar.open('Emprestimo gerado com sucesso!', 'Fechar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['success-snackbar']
+        });
+      },
+      error: (error) => {
+        this.snackBar.open('Erro ao gerar emprestimo. Tente novamente.', 'Fechar', {
+          duration: 3000,
+          panelClass: ['error-snackbar']
+        });
       }
     });
   }
