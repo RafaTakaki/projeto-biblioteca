@@ -14,6 +14,9 @@ public class BuscarReservasAtivasHandler : IRequestHandler<BuscarReservasAtivasR
 
     public async Task<BuscarReservasAtivasResponse> Handle(BuscarReservasAtivasRequest request, CancellationToken cancellationToken)
     {
+        // TODO tratar as datas para o formato "dd/MM/yyyy"
+        // TODO tratar os enums para usar o name ao invés do ordinal
+        
         var reservasAtivas = await _reservaRepository.BuscarReservasAtivas();
 
         return new BuscarReservasAtivasResponse(reservasAtivas);
