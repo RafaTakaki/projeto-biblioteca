@@ -68,6 +68,8 @@ export class CadastrarLivroComponent {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('tipoUsuario');
+    localStorage.removeItem('email');
     this.router.navigate(['/login']);
   }
 }
