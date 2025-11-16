@@ -45,30 +45,40 @@ export class GerenciarLivrosComponent {
   mensagem: string = '';
   displayedColumns: string[] = [  'titulo', 'autor', 'quantidadeEstoque', 'editar', 'excluir'];
 
-  // TODO remover mock após o fluxo ficar pronto
-  livrosCadastrados: CadastroLivro[] = [
-    {
-      id: '1',
-      titulo: 'Teste',
-      autor: 'Teste',
-      isbn: 'Teste',
-      categoria: 'Teste',
-      quantidadeEstoque: '10'
-    },
-    {
-      id: '2',
-      titulo: 'Teste2',
-      autor: 'Teste2',
-      isbn: 'Teste2',
-      categoria: 'Teste2',
-      quantidadeEstoque: '5'
-    },
-  ];
-
+  livrosCadastrados: CadastroLivro[] = [];
   constructor(private apiService: ApiService, private router: Router,  private snackBar: MatSnackBar) {
   }
 
+  ngOnInit(): void {
+    this.apiService.listarLivrosDisponiveis().subscribe({
+      next: (response: CadastroLivro[]) => {
+        this.livrosCadastrados = response;
+      },
+      error: (error) => {
+        this.snackBar.open('Erro ao listar livros. Tente novamente.', 'Fechar', {
+          duration: 3000,
+          panelClass: ['error-snackbar']
+        });
+      }
+    });
+  }
+
   onDelete(livroParaDeletar: any): void {
+    this.excluirLivro(livroParaDeletar);
+  }
+
+  onEdit(livroParaDeletar: CadastroLivro): void {
+    this.abrirTelaDeEdicao(livroParaDeletar);
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('tipoUsuario');
+    localStorage.removeItem('email');
+    this.router.navigate(['/login']);
+  }
+
+  private excluirLivro(livroParaDeletar: any) {
     this.apiService.excluirLivro(livroParaDeletar.id).subscribe({
       next: (response) => {
         this.snackBar.open('Livro excluido com sucesso!', 'Fechar', {
@@ -87,18 +97,11 @@ export class GerenciarLivrosComponent {
     });
   }
 
-  onEdit(livroParaDeletar: CadastroLivro): void {
+  private abrirTelaDeEdicao(livroParaDeletar: CadastroLivro) {
     this.router.navigate(['/editar-livro'], {
       state: {
         livro: livroParaDeletar
       }
     });
-  }
-
-  logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('tipoUsuario');
-    localStorage.removeItem('email');
-    this.router.navigate(['/login']);
   }
 }
