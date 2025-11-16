@@ -57,7 +57,7 @@ export class VisualizarReservasComponent {
     this.router.navigate(['/login']);
   }
 
-  private listarReservasPorEmail() {
+  private listarReservasPorEmail(): void {
     let email = localStorage.getItem('email');
     if (email) {
       this.apiService.listarReservasPorEmail(email).subscribe({
