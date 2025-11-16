@@ -27,12 +27,12 @@ public class ReservaController : Controller
     [SwaggerOperation(
         Summary = "Reserva um livro",
         Description = "Permite que um usuário logado reserve um livro disponível na biblioteca.")]
-    public async Task<IActionResult> ReservarLivro([FromBody] string request)
+    public async Task<IActionResult> ReservarLivro([FromBody] ReservarLivroRequest request)
     {
         try
         {
             var jwtToken = Request.Headers["Authorization"].ToString().Replace("Bearer ", "").Trim();
-            var newRequest = new ReservarLivroRequest(request, jwtToken);
+            var newRequest = request with { token = jwtToken };
             var resultado = await _mediator.Send(newRequest);
             if (!resultado.Sucesso)
             {

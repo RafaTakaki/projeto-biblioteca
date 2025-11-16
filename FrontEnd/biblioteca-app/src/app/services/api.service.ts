@@ -58,9 +58,9 @@ export class ApiService {
     return this.http.post<string>(url, body, { headers: headers, responseType: 'text' as 'json' });
   }
 
-  listarLivrosDisponniveis(): Observable<string[]> {
+  listarLivrosDisponniveis(): Observable<any> {
     const url = `${this.apiUrl}5016/Livro/ObterLivrosDisponiveis`;
-    return this.http.get<string[]>(url);
+    return this.http.get<any>(url);
   }
 
   excluirLivro(livroParaDeletar: any): Observable<string> {
@@ -81,6 +81,12 @@ export class ApiService {
   buscarReservasAtivas(): Observable<Reserva[]> {
     const url = `${this.apiUrl}5016/Reserva/BuscarTodasReservasAtivas`
     return this.http.get<Reserva[]>(url);
+  }
+
+  criarReserva(titulo: string): Observable<string> {
+    const url = `${this.apiUrl}5016/Reserva/ReservarLivro`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<string>(url, { livro: titulo, token: '' }, { headers: headers, responseType: 'text' as 'json' });
   }
 
   buscaRacas(tipoPet: string): Observable<string[]> {

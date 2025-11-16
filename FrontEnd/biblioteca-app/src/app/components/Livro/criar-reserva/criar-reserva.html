@@ -1,19 +1,20 @@
 <app-imagem-padrao />
 <form (ngSubmit)="onSubmit()" class="login100-form validate-form">
 
-
 	<span class="login100-form-title p-b-34 p-t-27">
-		Agendar retirada do livro
+		Criar reserva
 	</span>
 
 	<div class="wrap-input100 validate-input">
-		<input class="input100" type="text" [(ngModel)]="nomeDoLivro" name="nomeDoLivro" placeholder="Nome do Livro:" required />
-		<span class="focus-input100"></span>
+    <select [(ngModel)]="nomeDoLivro" name="nomeDoLivroSelect">
+      <option value="">Todos</option>
+      <option *ngFor="let livro of livros" [value]="livro">{{ livro }}</option>
+    </select>
 	</div>
 
 	<div class="container-login100-form-btn">
 		<button type="submit" class="login100-form-btn">
-			Criar Emprestimo
+			Criar Reserva
 		</button>
 	</div>
 </form>

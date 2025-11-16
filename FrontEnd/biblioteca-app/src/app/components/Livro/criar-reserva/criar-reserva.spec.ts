@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CriarEmprestimoComponent } from './criar-emprestimos';
-describe('CriarEmprestimoComponent', () => {
-  let component: CriarEmprestimoComponent;
-  let fixture: ComponentFixture<CriarEmprestimoComponent>;
+import { CriarReservaComponent } from './criar-reserva';
+describe('CriarReservaComponent', () => {
+  let component: CriarReservaComponent;
+  let fixture: ComponentFixture<CriarReservaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CriarEmprestimoComponent]
+      imports: [CriarReservaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CriarEmprestimoComponent);
+    fixture = TestBed.createComponent(CriarReservaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

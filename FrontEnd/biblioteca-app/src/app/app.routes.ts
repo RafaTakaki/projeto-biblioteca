@@ -5,7 +5,7 @@ import { RecuperarSenhaComponent } from './components/login-page/recuperar-senha
 import { CadastrarLivroComponent } from './components/Livro/cadastrar-livro/cadastrar-livro';
 import { AuthGuard } from './auth.guard';
 import { FrontPageComponent } from './components/front-page/front-page.component';
-import { CriarEmprestimoComponent } from './components/Livro/criar-emprestimos/criar-emprestimo';
+import { CriarReservaComponent } from './components/Livro/criar-reserva/criar-reserva';
 import { CadastroAgendamentoComponent } from './components/agendamento/cadastro-agendamento/cadastro-agendamento.component';
 import { NotificacoesComponent } from './components/notificacoes/notificacoes.component';
 import { DetalhesPetComponent } from './components/Livro/detalhes-pet/detalhes-pet.component';
@@ -42,8 +42,8 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: 'criar-emprestimos',
-        component: CriarEmprestimoComponent,
+        path: 'criar-reserva',
+        component: CriarReservaComponent,
         canActivate: [AuthGuard]
     },
     {
